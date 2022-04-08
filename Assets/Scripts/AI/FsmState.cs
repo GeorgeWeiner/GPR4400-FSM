@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 namespace AI
 {
+    //Where is the state in its progression
     public enum ExecutionState
     {
         NONE,
@@ -11,14 +12,18 @@ namespace AI
         TERMINATED
     }
 
+    //Abstraction of different Fsm-States
     public enum FsmStateType
     {
         IDLE,
-        PATROL
+        PATROL,
+        CHASE
     }
     
     public abstract class FsmState : ScriptableObject
     {
+        public Material stateMaterial;
+        
         protected NavMeshAgent navMeshAgent;
         protected Npc npc;
         protected FiniteStateMachine fsm;
@@ -49,6 +54,8 @@ namespace AI
             return true;
         }
 
+        
+        //Receive the dependencies for the scriptable object.
         public virtual void SetNavMeshAgent(NavMeshAgent agent)
         {
             if (agent != null)
@@ -56,14 +63,14 @@ namespace AI
                 navMeshAgent = agent;
             }
         }
-
-        public void SetExecutingFsm(FiniteStateMachine fsmToSet)
+        
+        public virtual void SetExecutingFsm(FiniteStateMachine fsmToSet)
         {
             if (fsmToSet != null)
                 fsm = fsmToSet;
         }
 
-        public void SetExecutionNpc(Npc npcToSet)
+        public virtual void SetExecutionNpc(Npc npcToSet)
         {
             if (npcToSet != null)
             {

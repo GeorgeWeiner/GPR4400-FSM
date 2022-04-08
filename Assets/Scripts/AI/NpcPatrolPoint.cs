@@ -17,14 +17,14 @@ namespace AI
             var allPatrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
             foreach (var patrolPoint in allPatrolPoints)
             {
-                if (Vector3.Distance(this.transform.position, patrolPoint.transform.position) <= connectionRadius)
+                if (Vector3.Distance(this.transform.position, patrolPoint.transform.position) <= connectionRadius && patrolPoint != this.gameObject)
                 {
                     _patrolPoints.Add(patrolPoint.GetComponent<NpcPatrolPoint>());
-                } 
+                }
             }
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(transform.position, gizmoRadius);
         }

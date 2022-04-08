@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4cf42a9fcd43afa52c820c0f2e3bc0, type: 3}
   m_Name: Patrol State
   m_EditorClassIdentifier: 
+  stateMaterial: {fileID: 2100000, guid: 762150d6156e7904b916d328be9aa954, type: 2}

@@ -45,7 +45,7 @@ namespace AI.States
                 {
                     fsm.EnterState(FsmStateType.PATROL);
                 }
-                Debug.LogFormat("Updating Idle State {0}", _totalDuration);
+                Debug.Log("Updating Idle State");
             }
         }
     }

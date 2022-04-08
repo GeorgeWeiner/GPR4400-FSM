@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c8c7bdbaa90a0408e6b1c61830c420, type: 3}
-  m_Name: Idle State
+  m_Script: {fileID: 11500000, guid: 5b5bf2299f474f088bbb12646e9ecfd4, type: 3}
+  m_Name: Chase State
   m_EditorClassIdentifier: 
-  stateMaterial: {fileID: 2100000, guid: ffe853fccd1e83b4f8e60dddf9f72eef, type: 2}
-  duration: 3
+  stateMaterial: {fileID: 2100000, guid: 7f5f7e323ab5d314788bf3b218a32c40, type: 2}
