@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEditorInternal;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,17 +11,19 @@ namespace AI
         [SerializeField] private float playerDetectionRadius;
         [SerializeField] private LayerMask layerMask;
 
+        [SerializeField] private float speedPatrolling;
+        [SerializeField] private float speedChasing;
+
         private NavMeshAgent _agent;
         private FiniteStateMachine _fsm;
 
         private Collider[] _targets;
         private Collider _closestCollider;
         private float _closestTarget;
-        private bool _isChasing;
 
 
         public List<NpcPatrolPoint> PatrolPoints => patrolPoints;
-        public bool IsChasing => _isChasing;
+        public bool IsChasing { get; private set; }
 
         private void Awake()
         {
@@ -42,15 +42,18 @@ namespace AI
             if (_targets.Length != 0)
             {
                 Debug.LogFormat("Detected {0} colliders", _targets.Length);
-                if (!_isChasing) //This could be broken!
+                if (!IsChasing) 
                 {
                     _fsm.EnterState(FsmStateType.CHASE);
                 }
-                _isChasing = true;
+
+                _agent.speed = speedChasing;
+                IsChasing = true;
             }
             else
             {
-                _isChasing = false;
+                _agent.speed = speedPatrolling;
+                IsChasing = false;
             }
         }
         

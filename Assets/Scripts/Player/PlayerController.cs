@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         
         Debug.DrawRay(ray.origin, ray.direction, Color.green);
 
-        if (!Input.GetMouseButtonDown(0)) return;
+        if (!Input.GetMouseButton(0)) return;
         _agent.SetDestination(hit.point);
     }
 }

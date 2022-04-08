@@ -40,6 +40,7 @@ namespace AI.States
         public override bool ExitState()
         {
             Debug.Log("Exited Chase State");
+            SetDestination(npc.transform);
             return base.ExitState();
         }
 

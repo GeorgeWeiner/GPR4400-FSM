@@ -8,7 +8,9 @@ namespace AI
     {
         [SerializeField] private FsmState startingState;
         [SerializeField] private List<FsmState> validStates;
-        
+
+
+        private List<FsmState> _stateInstance;
         private FsmState _currentState;
         private Dictionary<FsmStateType, FsmState> _fsmStates;
 
@@ -23,15 +25,20 @@ namespace AI
 
             var navMeshAgent = GetComponent<NavMeshAgent>();
             var npc = GetComponent<Npc>();
-            
-            //We pass the values into the Scriptable Object (Dependency Injection).
+
+            var startingStateInstance = Instantiate(startingState);
+            startingState = startingStateInstance;
+
+            //We pass the values into the instance of the Scriptable Object (Dependency Injection).
             foreach (var state in validStates)
             {
-                state.SetExecutingFsm(this);
-                state.SetExecutionNpc(npc);
-                state.SetNavMeshAgent(navMeshAgent);
+                var instance = Instantiate(state);
                 
-                _fsmStates.Add(state.StateType, state);
+                instance.SetExecutingFsm(this);
+                instance.SetExecutionNpc(npc);
+                instance.SetNavMeshAgent(navMeshAgent);
+                
+                _fsmStates.Add(state.StateType, instance);
             }
         }
 
@@ -40,7 +47,7 @@ namespace AI
             //Enter the first state
             if (startingState != null)
             {
-                EnterState(startingState);
+                EnterState(FsmStateType.IDLE);
             } 
         }
 
@@ -53,7 +60,7 @@ namespace AI
             }
         }
 
-        //Two different methods to enter a new state (They call the same thing and just take different parameters)
+        //Two different methods to enter a new state (They call the same functionality and just take different parameters)
         public void EnterState(FsmState state)
         {
             if (startingState == null) return;
