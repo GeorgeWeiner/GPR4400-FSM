@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +26,7 @@ namespace AI
 
             var navMeshAgent = GetComponent<NavMeshAgent>();
             var npc = GetComponent<Npc>();
+            var groupManager = FindObjectOfType<AIGroupManager>();
 
             var startingStateInstance = Instantiate(startingState);
             startingState = startingStateInstance;
@@ -37,7 +39,8 @@ namespace AI
                 instance.SetExecutingFsm(this);
                 instance.SetExecutionNpc(npc);
                 instance.SetNavMeshAgent(navMeshAgent);
-                
+                instance.SetGroupManager(groupManager);
+
                 _fsmStates.Add(state.StateType, instance);
             }
         }
@@ -83,5 +86,7 @@ namespace AI
                 EnterState(nextState);
             }
         }
+
+        
     }
 }

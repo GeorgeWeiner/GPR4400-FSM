@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace AI.States
 {
@@ -8,7 +9,6 @@ namespace AI.States
         public override void OnEnable()
         {
             base.OnEnable();
-
             StateType = FsmStateType.CHASE;
         }
         
@@ -26,10 +26,10 @@ namespace AI.States
         
         public override void UpdateState()
         {
-            if (!npc.IsChasing)
-            {
-                fsm.EnterState(FsmStateType.IDLE);
-            }
+            //if (!npc.IsChasing)
+            //{
+            //    fsm.EnterState(FsmStateType.IDLE);
+            //}
             // Need to make sure we've successfully entered the state.
             if (EnteredState)
             {

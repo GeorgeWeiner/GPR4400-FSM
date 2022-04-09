@@ -27,6 +27,7 @@ namespace AI
         protected NavMeshAgent navMeshAgent;
         protected Npc npc;
         protected FiniteStateMachine fsm;
+        protected AIGroupManager groupManager;
         
         public virtual void OnEnable()
         {
@@ -59,9 +60,7 @@ namespace AI
         public virtual void SetNavMeshAgent(NavMeshAgent agent)
         {
             if (agent != null)
-            {
                 navMeshAgent = agent;
-            }
         }
         
         public virtual void SetExecutingFsm(FiniteStateMachine fsmToSet)
@@ -73,9 +72,13 @@ namespace AI
         public virtual void SetExecutionNpc(Npc npcToSet)
         {
             if (npcToSet != null)
-            {
                 npc = npcToSet;
-            }
+        }
+
+        public virtual void SetGroupManager(AIGroupManager aiGroupManagerToSet)
+        {
+            if (aiGroupManagerToSet != null)
+                groupManager = aiGroupManagerToSet;
         }
     }
 }
