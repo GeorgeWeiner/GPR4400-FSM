@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 namespace AI
 {
     [RequireComponent(typeof(NavMeshAgent), typeof(FiniteStateMachine))]
-    public class Npc : MonoBehaviour
+    public class Npc : Creature
     {
         [SerializeField] private List<NpcPatrolPoint> patrolPoints;
         [SerializeField] private float viewDistance;
         [SerializeField] private float viewAngle;
 
         [SerializeField] private float smellRadius;
+        
+        [SerializeField] private float minAttackDistance;
         
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private LayerMask playerLayerMask;
@@ -35,6 +36,7 @@ namespace AI
         public Transform Player { get; private set; }
         public List<NpcPatrolPoint> PatrolPoints => patrolPoints;
         public bool IsChasing { get; private set; }
+        public bool CanAttack { get; private set; }
         
 
         private void Awake()
@@ -53,6 +55,7 @@ namespace AI
         {
             View();
             Smell();
+            Attack();
         }
 
         private void View()
@@ -77,11 +80,6 @@ namespace AI
                 _agent.speed = speedChasing;
                 IsChasing = true;
             }
-            //else
-            //{
-            //    _agent.speed = speedPatrolling;
-            //    IsChasing = false;
-            //}
         }
 
         private void Smell()
@@ -99,8 +97,21 @@ namespace AI
                 IsChasing = true;
             }
         }
-        
-        public void AlertAllies()
+
+        private void Attack()
+        {
+            if (Vector3.Distance(Player.position, transform.position) < minAttackDistance && IsChasing)
+            {
+                _fsm.EnterState(FsmStateType.ATTACKING);
+                CanAttack = true;
+            }
+            else
+            {
+                CanAttack = false;
+            }
+        }
+
+        private void AlertAllies()
         {
             foreach (var ally in _alliedNpcList)
             {
@@ -111,6 +122,11 @@ namespace AI
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(transform.position, viewDistance);
+        }
+        
+        protected override void OnDeath()
+        {
+            Destroy(gameObject);
         }
     }
 }

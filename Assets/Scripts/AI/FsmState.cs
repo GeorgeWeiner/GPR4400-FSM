@@ -18,7 +18,7 @@ namespace AI
         IDLE,
         PATROL,
         CHASE,
-        FLANKING
+        ATTACKING
     }
     
     public abstract class FsmState : ScriptableObject
