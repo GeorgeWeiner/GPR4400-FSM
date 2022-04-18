@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 namespace AI
 {
@@ -9,8 +10,14 @@ namespace AI
     public class Npc : MonoBehaviour
     {
         [SerializeField] private List<NpcPatrolPoint> patrolPoints;
-        [SerializeField] private float playerDetectionRadius;
+        [SerializeField] private float viewDistance;
+        [SerializeField] private float viewAngle;
+
+        [SerializeField] private float smellRadius;
+        
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private LayerMask playerLayerMask;
+
 
         [SerializeField] private float speedPatrolling;
         [SerializeField] private float speedChasing;
@@ -25,8 +32,10 @@ namespace AI
         private Collider _closestCollider;
         private float _closestTarget;
 
+        public Transform Player { get; private set; }
         public List<NpcPatrolPoint> PatrolPoints => patrolPoints;
         public bool IsChasing { get; private set; }
+        
 
         private void Awake()
         {
@@ -34,23 +43,33 @@ namespace AI
             _fsm = GetComponent<FiniteStateMachine>();
             _aiGroupManager = FindObjectOfType<AIGroupManager>();
 
+            Player = GameObject.FindWithTag("Player").transform;
+
             _alliedNpcList = _aiGroupManager.npcsInGroup;
             _alliedNpcList.Remove(this);
         }
 
         private void Update()
         {
-            TargetInChaseRange();
+            View();
+            Smell();
         }
 
-        private void TargetInChaseRange()
+        private void View()
         {
-            _targets = Physics.OverlapSphere(transform.position, playerDetectionRadius, layerMask);
-            if (_targets.Length != 0)
+            if (!(Vector3.Distance(transform.position, Player.position) < viewDistance)) return;
+            
+            var view = transform;
+                
+            var directionToPlayer = (Player.position - view.position).normalized;
+            var angleToPlayer = Vector3.Angle(view.forward, directionToPlayer);
+
+            if (angleToPlayer < viewAngle / 2f)
             {
-                Debug.LogFormat("Detected {0} colliders", _targets.Length);
-                if (!IsChasing) 
+                if (!Physics.Linecast(transform.position, Player.position, layerMask))
                 {
+                    if (IsChasing) return;
+
                     _fsm.EnterState(FsmStateType.CHASE);
                     AlertAllies();
                 }
@@ -64,24 +83,21 @@ namespace AI
             //    IsChasing = false;
             //}
         }
-        
-        //Detect the closest target in the area.
-        public Transform DetectTargets()
-        {
-            //if (_targets.Length == 0) return null;
-            //
-            //_closestTarget = Vector3.Distance(_targets[0].transform.position, transform.position);
-            //foreach (var target in _targets)
-            //{
-            //    if (Vector3.Distance(target.transform.position, transform.position) <= _closestTarget)
-            //    {
-            //        _closestCollider = target;
-            //    }
-            //}
-            //return _closestCollider.transform;
 
-            var player = GameObject.FindWithTag("Player");
-            return player.transform;
+        private void Smell()
+        {
+            var playerInRange = Physics.CheckSphere(transform.position, smellRadius, playerLayerMask);
+
+            if (playerInRange)
+            {
+                if (IsChasing) return;
+
+                _fsm.EnterState(FsmStateType.CHASE);
+                AlertAllies();
+                
+                _agent.speed = speedChasing;
+                IsChasing = true;
+            }
         }
         
         public void AlertAllies()
@@ -94,7 +110,7 @@ namespace AI
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
+            Gizmos.DrawWireSphere(transform.position, viewDistance);
         }
     }
 }

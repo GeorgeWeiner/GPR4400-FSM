@@ -33,7 +33,7 @@ namespace AI.States
             // Need to make sure we've successfully entered the state.
             if (EnteredState)
             {
-                SetDestination(npc.DetectTargets());
+                SetDestination(npc.Player);
             }
         }
 

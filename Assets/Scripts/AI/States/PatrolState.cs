@@ -27,12 +27,14 @@ namespace AI.States
                 if (_patrolPoints == null || _patrolPoints.Count == 0)
                 {
                     Debug.LogError("PatrolState: Failed to grab Patrol Points from the NPC");
-                    Debug.Log(_patrolPoints.Count);
+                    if (_patrolPoints != null) 
+                        Debug.Log(_patrolPoints.Count);
                 }
                 else
                 {
                     if (_patrolPointIndex < 0)
                     {
+                        Random.InitState(System.DateTime.Now.Millisecond);
                         _patrolPointIndex = Random.Range(0, _patrolPoints.Count);
                     }
                     else

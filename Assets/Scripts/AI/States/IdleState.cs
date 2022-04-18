@@ -11,6 +11,7 @@ namespace AI.States
         public override void OnEnable()
         {
             base.OnEnable();
+            _totalDuration += Random.Range(-.5f, -5f);
             StateType = FsmStateType.IDLE;
         }
 
