@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5035ac825f2844bab3e1fb7cf793197d, type: 3}
+  m_Name: Attack State
+  m_EditorClassIdentifier: 
+  stateMaterial: {fileID: 2100000, guid: 08797bef9d4b96449b546de8c788bc18, type: 2}
+  minAttackDistance: 7
+  attackIntervalDuration: 0.5
+  attack: {fileID: 11400000, guid: 7188eb990d6de3143873853430ce0fda, type: 2}
