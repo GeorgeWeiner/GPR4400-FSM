@@ -58,15 +58,5 @@ namespace AI.States
                 navMeshAgent.SetDestination(chaseTarget.position);
             }
         }
-        /*
-        * If the target is too far away from this instance,
-        * Initiate the flanking maneuver,
-        * this will be achieved, by picking a random way-point in the general direction of the target.
-        * After reaching the waypoint, the instance will switch to the target.
-        */
-        private void InitiateFlankingBehaviour()
-        {
-            
-        }
     }
 }

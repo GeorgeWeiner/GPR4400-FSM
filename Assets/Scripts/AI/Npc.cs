@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,13 +18,11 @@ namespace AI
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private LayerMask playerLayerMask;
 
-
         [SerializeField] private float speedPatrolling;
         [SerializeField] private float speedChasing;
         
         private List<Npc> _alliedNpcList;
 
-        private NavMeshAgent _agent;
         private FiniteStateMachine _fsm;
         private AIGroupManager _aiGroupManager;
 
@@ -36,12 +33,13 @@ namespace AI
         public Transform Player { get; private set; }
         public List<NpcPatrolPoint> PatrolPoints => patrolPoints;
         public bool IsChasing { get; private set; }
-        public bool CanAttack { get; private set; }
-        
+        public bool IsAttacking { get; private set; }
+        public NavMeshAgent Agent { get; set; }
+
 
         private void Awake()
         {
-            _agent = GetComponent<NavMeshAgent>();
+            Agent = GetComponent<NavMeshAgent>();
             _fsm = GetComponent<FiniteStateMachine>();
             _aiGroupManager = FindObjectOfType<AIGroupManager>();
 
@@ -67,8 +65,10 @@ namespace AI
             var directionToPlayer = (Player.position - view.position).normalized;
             var angleToPlayer = Vector3.Angle(view.forward, directionToPlayer);
 
+            //If player is within the view angle...
             if (angleToPlayer < viewAngle / 2f)
             {
+                //...Do a Linecast to check if player is obscured or not.
                 if (!Physics.Linecast(transform.position, Player.position, layerMask))
                 {
                     if (IsChasing) return;
@@ -77,15 +77,17 @@ namespace AI
                     AlertAllies();
                 }
 
-                _agent.speed = speedChasing;
+                Agent.speed = speedChasing;
                 IsChasing = true;
             }
         }
 
         private void Smell()
         {
+            //Check if player is too close to the NPC...
             var playerInRange = Physics.CheckSphere(transform.position, smellRadius, playerLayerMask);
 
+            //...if yes, initiate chase state.
             if (playerInRange)
             {
                 if (IsChasing) return;
@@ -93,7 +95,7 @@ namespace AI
                 _fsm.EnterState(FsmStateType.CHASE);
                 AlertAllies();
                 
-                _agent.speed = speedChasing;
+                Agent.speed = speedChasing;
                 IsChasing = true;
             }
         }
@@ -102,12 +104,14 @@ namespace AI
         {
             if (Vector3.Distance(Player.position, transform.position) < minAttackDistance && IsChasing)
             {
+                if (IsAttacking) return;
+                
                 _fsm.EnterState(FsmStateType.ATTACKING);
-                CanAttack = true;
+                IsAttacking = true;
             }
             else
             {
-                CanAttack = false;
+                IsAttacking = false;
             }
         }
 

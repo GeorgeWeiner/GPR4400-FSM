@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 7930371318889204592, guid: 103db180ac5b17647acd32eb66b0741d,
     type: 3}
+  instantiationOffset: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55

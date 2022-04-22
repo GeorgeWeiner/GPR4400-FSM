@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5056064-9e3e-40a4-9358-de3669e8ae68" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Creature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GPR4400-FSM/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPR4400-FSM/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BaseProjectileBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseProjectileBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BaseProjectileBehavior.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseProjectileBehavior.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/OutdoorsScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/OutdoorsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/OutdoorsScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Attacks/BasicProjectileAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Attacks/BasicProjectileAttack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/FiniteStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/FiniteStateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Npc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Npc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/ScriptableObjects/Attack State.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/ScriptableObjects/Attack State.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/ScriptableObjects/Projectile Attack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/ScriptableObjects/Projectile Attack.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/States/AttackState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/States/AttackState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/States/ChaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/States/ChaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/LooseCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/LooseCondition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Creature.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Creature.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Creature.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/IDamagable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/IDamagable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/IDamagable.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/IDamagable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/SkyandFogSettingsProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/SkyandFogSettingsProfile.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +38,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Attack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Creature.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/States/AttackState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Attacks/BasicProjectileAttack.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27ZEhdUntnerZpq9vRATWzQYCVX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -71,6 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1649519331325</updated>
       <workItem from="1649519342648" duration="7078000" />
+      <workItem from="1650621977486" duration="9685000" />
     </task>
     <servers />
   </component>
@@ -80,6 +108,17 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

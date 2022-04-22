@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Attack State
   m_EditorClassIdentifier: 
   stateMaterial: {fileID: 2100000, guid: 08797bef9d4b96449b546de8c788bc18, type: 2}
-  minAttackDistance: 7
   attackIntervalDuration: 0.5
+  minAttackDuration: 1
   attack: {fileID: 11400000, guid: 7188eb990d6de3143873853430ce0fda, type: 2}

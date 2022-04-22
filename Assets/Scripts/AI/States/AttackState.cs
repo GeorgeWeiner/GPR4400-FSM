@@ -5,20 +5,19 @@ namespace AI.States
     [CreateAssetMenu(fileName = "Attack State", menuName = "States/Attack", order = 4)]
     public class AttackState : FsmState
     {
+        [Header("Attack Stats")]
         [SerializeField] private float attackIntervalDuration;
-
+        [SerializeField] private float minAttackDuration;
         [SerializeField] private Attack attack;
 
         private float _totalDuration;
+        private float _attackBuffer;
         private Attack _attackInstance;
         
         public override void OnEnable()
         {
             base.OnEnable();
             StateType = FsmStateType.ATTACKING;
-
-            _attackInstance = Instantiate(attack);
-            _attackInstance.SetExecutionNpc(npc);
         }
 
         public override bool EnterState()
@@ -27,6 +26,9 @@ namespace AI.States
             {
                 Debug.Log("Entered Attacking State");
                 EnteredState = true;
+                
+                _attackInstance = Instantiate(attack);
+                _attackInstance.SetExecutionNpc(npc);
             }
 
             return EnteredState;
@@ -34,8 +36,10 @@ namespace AI.States
 
         public override void UpdateState()
         {
-            if (npc.CanAttack)
+            if (npc.IsAttacking)
             {
+                _attackBuffer = 0f;
+                
                 if (_totalDuration < attackIntervalDuration)
                 {
                     _totalDuration += Time.deltaTime;
@@ -50,7 +54,10 @@ namespace AI.States
 
             else
             {
-                fsm.EnterState(FsmStateType.CHASE);
+                _attackBuffer += Time.deltaTime;
+                
+                if (_attackBuffer >= minAttackDuration)
+                    fsm.EnterState(FsmStateType.CHASE);
             }
         }
     }

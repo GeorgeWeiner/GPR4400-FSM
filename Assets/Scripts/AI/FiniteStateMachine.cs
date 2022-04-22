@@ -9,7 +9,6 @@ namespace AI
         [SerializeField] private FsmState startingState;
         [SerializeField] private List<FsmState> validStates;
 
-
         private List<FsmState> _stateInstance;
         private FsmState _currentState;
         private Dictionary<FsmStateType, FsmState> _fsmStates;

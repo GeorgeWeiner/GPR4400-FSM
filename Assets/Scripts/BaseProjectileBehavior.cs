@@ -18,9 +18,9 @@ public class BaseProjectileBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Creature>() != null)
+        if (other.GetComponent<IDamagable>() != null)
         {
-            other.GetComponent<Creature>().TakeDamage(projectileDamage);
+            other.GetComponent<IDamagable>().TakeDamage(projectileDamage);
         }
     }
 }
